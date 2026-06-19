@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
+import { EASE_GOLD } from '@/lib/animations'
 import {
   Waves,
   Ship,
@@ -181,8 +182,8 @@ function BentoTile({
       {/* Tile content */}
       <div className="relative z-10 flex flex-col justify-between h-full p-6 lg:p-7">
         {/* Icon */}
-        <div>
-          <exp.Icon size={exp.hero ? 26 : 20} strokeWidth={1.25} style={{ color: iconColor } as React.CSSProperties} />
+        <div style={{ color: iconColor, display: 'inline-flex' }}>
+          <exp.Icon size={exp.hero ? 26 : 20} strokeWidth={1.25} />
         </div>
 
         {/* Text block — rises on hover */}
@@ -254,7 +255,7 @@ export default function SignatureExperiences() {
           initial={reduced ? false : { opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, ease: EASE_GOLD }}
         >
           <p
             style={{
@@ -291,7 +292,7 @@ export default function SignatureExperiences() {
           initial={reduced ? false : { opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+          transition={{ duration: 1.0, ease: EASE_GOLD, delay: 0.12 }}
         >
           {/*
             DESKTOP LAYOUT (lg, 4 cols):
@@ -336,7 +337,7 @@ export default function SignatureExperiences() {
           initial={reduced ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
+          transition={{ duration: 0.8, ease: EASE_GOLD, delay: 0.18 }}
         >
           <Link
             href="/features"
@@ -375,12 +376,13 @@ export default function SignatureExperiences() {
               View All Features &amp; Facilities
             </span>
 
-            <ArrowRight
-              size={14}
-              strokeWidth={1.5}
-              className="transition-transform duration-300 ease-out group-hover:translate-x-1.5"
-              style={{ color: '#C9A65A' }}
-            />
+            <span style={{ color: '#C9A65A', display: 'inline-flex' }}>
+              <ArrowRight
+                size={14}
+                strokeWidth={1.5}
+                className="transition-transform duration-300 ease-out group-hover:translate-x-1.5"
+              />
+            </span>
           </Link>
         </motion.div>
 

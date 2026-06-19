@@ -2,6 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { EASE_GOLD } from '@/lib/animations'
 
 // ─── Count-up hook (no extra packages) ───────────────────────────────────────
 function useCountUp(end: number, duration: number, trigger: boolean, reduced: boolean) {
@@ -149,7 +150,7 @@ export default function TrustBand() {
           className="max-w-[1440px] mx-auto grid grid-cols-2 lg:grid-cols-4"
           initial={reduced ? false : { opacity: 0, y: 28 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.0, ease: EASE_GOLD }}
         >
           {STATS.map((stat, i) => (
             <div
@@ -182,7 +183,7 @@ export default function TrustBand() {
         initial={reduced ? false : { opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        transition={{ duration: 0.9, ease: EASE_GOLD, delay: 0.1 }}
       >
         <p
           className="text-center mb-8"

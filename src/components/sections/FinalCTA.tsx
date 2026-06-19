@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight, Download } from 'lucide-react'
 
+import { EASE_GOLD } from '@/lib/animations'
 // ─── Section ──────────────────────────────────────────────────────────────────
 export default function FinalCTA() {
   const reduced = useReducedMotion() ?? false
@@ -64,7 +65,7 @@ export default function FinalCTA() {
           initial={reduced ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, ease: EASE_GOLD }}
         >
           <p
             style={{
@@ -88,7 +89,7 @@ export default function FinalCTA() {
           initial={reduced ? false : { opacity: 0, scaleX: 0 }}
           whileInView={{ opacity: 0.5, scaleX: 1 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          transition={{ duration: 0.8, ease: EASE_GOLD, delay: 0.1 }}
         />
 
         {/* Serif headline */}
@@ -96,7 +97,7 @@ export default function FinalCTA() {
           initial={reduced ? false : { opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+          transition={{ duration: 1.1, ease: EASE_GOLD, delay: 0.12 }}
           style={{
             fontFamily: "var(--font-display, 'Cormorant Garamond', Georgia, serif)",
             fontSize: 'clamp(2.8rem, 7vw, 6rem)',
@@ -115,7 +116,7 @@ export default function FinalCTA() {
           initial={reduced ? false : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.22 }}
+          transition={{ duration: 0.9, ease: EASE_GOLD, delay: 0.22 }}
           style={{
             fontFamily: "var(--font-body, 'Montserrat', sans-serif)",
             fontSize: 'clamp(0.82rem, 1.5vw, 0.96rem)',
@@ -137,7 +138,7 @@ export default function FinalCTA() {
           initial={reduced ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.32 }}
+          transition={{ duration: 0.9, ease: EASE_GOLD, delay: 0.32 }}
         >
           {/* Primary: gold fill */}
           <Link

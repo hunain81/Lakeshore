@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
+import { EASE_GOLD } from '@/lib/animations'
 import {
   ArrowRight,
   Waves,
@@ -32,7 +33,7 @@ function Reveal({
       initial={reduced ? false : { opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 0.9, ease: EASE_GOLD, delay }}
     >
       {children}
     </motion.div>
@@ -308,7 +309,7 @@ export default function ClubPage() {
                 initial={reduced ? false : { opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.07 * i }}
+                transition={{ duration: 0.8, ease: EASE_GOLD, delay: 0.07 * i }}
                 style={{
                   backgroundColor: tier.bg,
                   border: `1px solid ${tier.border}`,
@@ -629,7 +630,7 @@ export default function ClubPage() {
                     initial={reduced ? false : { opacity: 0, y: 16 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.06 * i }}
+                    transition={{ duration: 0.7, ease: EASE_GOLD, delay: 0.06 * i }}
                   >
                     <p
                       style={{
@@ -711,7 +712,7 @@ export default function ClubPage() {
                 initial={reduced ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.05 * i }}
+                transition={{ duration: 0.7, ease: EASE_GOLD, delay: 0.05 * i }}
                 whileHover={reduced ? {} : { y: -4 }}
                 style={{
                   backgroundColor: amenity.dark ? '#061e1b' : '#0D4540',

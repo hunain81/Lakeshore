@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { EASE_GOLD } from '@/lib/animations'
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const CHAIRMAN_TITLES = [
@@ -94,7 +95,7 @@ function Reveal({
       initial={reduced ? false : { opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.95, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 0.95, ease: EASE_GOLD, delay }}
     >
       {children}
     </motion.div>
@@ -445,7 +446,7 @@ export default function AboutPage() {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{
                     duration: 0.85,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: EASE_GOLD,
                     delay: 0.05 + i * 0.06,
                   }}
                 >
@@ -714,7 +715,7 @@ export default function AboutPage() {
             initial={reduced ? false : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.9, ease: EASE_GOLD }}
           >
             {PARTNERS.map((partner) => (
               <span

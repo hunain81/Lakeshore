@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
+import { EASE_GOLD } from '@/lib/animations'
 // ─── Data ─────────────────────────────────────────────────────────────────────
 // `imageRight: true`  → image right column, text left  (flex-row-reverse on lg)
 // `imageRight: false` → image left column, text right  (flex-row on lg)
@@ -79,7 +80,7 @@ function PillarCard({
       viewport={{ once: true, margin: '-80px' }}
       transition={{
         duration: 1.05,
-        ease: [0.22, 1, 0.36, 1],
+        ease: EASE_GOLD,
         delay: index * 0.06,
       }}
     >
@@ -276,7 +277,7 @@ export default function ThreePillars() {
           initial={reduced ? false : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, ease: EASE_GOLD }}
         >
           <p
             style={{

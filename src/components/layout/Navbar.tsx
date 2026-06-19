@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ChevronDown, X, Menu } from 'lucide-react'
+import { EASE_GOLD } from '@/lib/animations'
 
 // ─── Data ──────────────────────────────────────────────────────────────────────
 type DropdownItem = { label: string; href: string }
@@ -178,7 +179,7 @@ const overlayContainer = {
 }
 const overlayItem = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE_GOLD } },
 }
 
 // ─── Main export ──────────────────────────────────────────────────────────────

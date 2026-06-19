@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Check, ChevronDown, ArrowRight } from 'lucide-react'
+
+import { EASE_GOLD } from '@/lib/animations'
 import PremiumTable from '@/components/ui/PremiumTable'
 
 // ─── Reveal helper ────────────────────────────────────────────────────────────
@@ -21,7 +23,7 @@ function Reveal({
       initial={reduced ? false : { opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay }}
+      transition={{ duration: 0.9, ease: EASE_GOLD, delay }}
     >
       {children}
     </motion.div>
@@ -341,7 +343,7 @@ export default function ResidenciaPage() {
                   initial={reduced ? false : { opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.04 * i }}
+                  transition={{ duration: 0.7, ease: EASE_GOLD, delay: 0.04 * i }}
                   className="flex items-center gap-4"
                   style={{
                     backgroundColor: '#F6F1E7',
@@ -535,7 +537,7 @@ export default function ResidenciaPage() {
                         initial={reduced ? false : { opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 0.32, ease: EASE_GOLD }}
                         style={{ overflow: 'hidden' }}
                       >
                         <p

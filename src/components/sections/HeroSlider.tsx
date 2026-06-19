@@ -10,8 +10,8 @@ import {
   useReducedMotion,
 } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import { EASE_GOLD } from '@/lib/animations'
 
-// ─── Slide data ──────────────────────────────────────────────────────────────
 const SLIDES = [
   {
     id: 'city',
@@ -63,7 +63,6 @@ const SLIDES = [
   },
 ] as const
 
-// ─── Animation variants ───────────────────────────────────────────────────────
 const textContainer = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
@@ -74,17 +73,16 @@ const textChild = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.0, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 1.0, ease: EASE_GOLD },
   },
 }
 
 const bgVariants = {
   enter: { opacity: 0 },
-  center: { opacity: 1, transition: { duration: 1.6, ease: 'easeInOut' } },
-  exit: { opacity: 0, transition: { duration: 1.2, ease: 'easeInOut' } },
+  center: { opacity: 1, transition: { duration: 1.6, ease: 'easeInOut' as const } },
+  exit: { opacity: 0, transition: { duration: 1.2, ease: 'easeInOut' as const } },
 }
 
-// ─── Scroll cue ──────────────────────────────────────────────────────────────
 function ScrollCue({ reduced }: { reduced: boolean }) {
   return (
     <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
@@ -109,7 +107,6 @@ function ScrollCue({ reduced }: { reduced: boolean }) {
   )
 }
 
-// ─── Dot indicators ───────────────────────────────────────────────────────────
 function Dots({
   total,
   active,
@@ -142,18 +139,15 @@ function Dots({
   )
 }
 
-// ─── Main component ───────────────────────────────────────────────────────────
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
   const reduced = useReducedMotion() ?? false
   const containerRef = useRef<HTMLDivElement>(null)
 
-  // Parallax — only when motion is allowed
   const { scrollY } = useScroll()
   const parallaxY = useTransform(scrollY, [0, 700], [0, reduced ? 0 : 160])
 
-  // Auto-advance every 7 s
   const advance = useCallback(() => {
     if (isAnimating) return
     setIsAnimating(true)
@@ -180,7 +174,6 @@ export default function HeroSlider() {
       style={{ height: '100svh', minHeight: '600px' }}
       aria-label="Lakeshore City hero"
     >
-      {/* ── Background layer (crossfade) ──────────────────────────── */}
       <AnimatePresence
         initial={false}
         onExitComplete={() => setIsAnimating(false)}
@@ -193,12 +186,10 @@ export default function HeroSlider() {
           animate="center"
           exit="exit"
         >
-          {/* Parallax wrapper */}
           <motion.div
             className="absolute inset-[-10%]"
             style={{ y: reduced ? 0 : parallaxY }}
           >
-            {/* Video (drop your drone footage here) */}
             {slide.video ? (
               <video
                 key={slide.video}
@@ -212,8 +203,6 @@ export default function HeroSlider() {
                 <source src={slide.video} type="video/mp4" />
               </video>
             ) : slide.poster ? (
-              /* Static poster image fallback */
-              // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={slide.poster}
                 alt=""
@@ -221,18 +210,15 @@ export default function HeroSlider() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
             ) : (
-              /* CSS gradient placeholder — replace with real media */
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${slide.gradient}`}
               >
-                {/* Subtle texture overlay to suggest depth */}
                 <div className="absolute inset-0 opacity-[0.06]"
                   style={{
                     backgroundImage:
                       'radial-gradient(ellipse 80% 60% at 50% 40%, #C9A65A 0%, transparent 70%)',
                   }}
                 />
-                {/* Water shimmer lines */}
                 <div className="absolute bottom-0 left-0 right-0 h-1/2 opacity-[0.04]"
                   style={{
                     backgroundImage:
@@ -243,7 +229,6 @@ export default function HeroSlider() {
             )}
           </motion.div>
 
-          {/* Cinematic gradient overlay — legibility + mood */}
           <div
             className="absolute inset-0 z-10"
             style={{
@@ -251,7 +236,6 @@ export default function HeroSlider() {
                 'linear-gradient(to bottom, rgba(11,59,54,0.25) 0%, rgba(11,59,54,0.55) 40%, rgba(6,30,27,0.82) 80%, rgba(6,30,27,0.95) 100%)',
             }}
           />
-          {/* Left vignette */}
           <div
             className="absolute inset-0 z-10 hidden md:block"
             style={{
@@ -262,7 +246,6 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      {/* ── Content layer ────────────────────────────────────────── */}
       <div className="relative z-20 flex flex-col justify-center h-full pt-32 md:pt-40 pb-20 md:pb-28">
         <div className="max-w-[1440px] mx-auto w-full px-6 xl:px-10">
           <AnimatePresence mode="wait" initial={false}>
@@ -274,7 +257,6 @@ export default function HeroSlider() {
               exit={{ opacity: 0, transition: { duration: 0.35 } }}
               className="max-w-3xl"
             >
-              {/* Overline */}
               <motion.p
                 variants={reduced ? {} : textChild}
                 style={{
@@ -290,7 +272,6 @@ export default function HeroSlider() {
                 {slide.overline}
               </motion.p>
 
-              {/* Gold hairline */}
               <motion.div
                 variants={reduced ? {} : textChild}
                 style={{
@@ -302,7 +283,6 @@ export default function HeroSlider() {
                 }}
               />
 
-              {/* Headline */}
               <motion.h1
                 variants={reduced ? {} : textChild}
                 style={{
@@ -320,7 +300,6 @@ export default function HeroSlider() {
                 {slide.headline}
               </motion.h1>
 
-              {/* Subline */}
               <motion.p
                 variants={reduced ? {} : textChild}
                 style={{
@@ -336,7 +315,6 @@ export default function HeroSlider() {
                 {slide.subline}
               </motion.p>
 
-              {/* CTAs */}
               <motion.div
                 variants={reduced ? {} : textChild}
                 className="flex flex-col sm:flex-row gap-4"
@@ -387,13 +365,10 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* ── Scroll cue ───────────────────────────────────────────── */}
       <ScrollCue reduced={reduced} />
 
-      {/* ── Slide indicators ─────────────────────────────────────── */}
       <Dots total={SLIDES.length} active={current} onSelect={goTo} />
 
-      {/* ── Progress bar (thin gold line, auto-advance timer) ─────── */}
       {!reduced && (
         <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10 z-20">
           <motion.div
